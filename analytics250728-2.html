@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平常時IVレンズ販売分析レポート</title>
+    <style>
+        body {
+            font-family: 'Meiryo', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .key-finding {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-left: 5px solid #2980b9;
+            margin: 20px 0;
+        }
+        .success-pattern {
+            background-color: #e8f6f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #16a085;
+        }
+        .challenge {
+            background-color: #fdedec;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #e74c3c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+        .rank1 { background-color: #fff9c4; }
+        .rank2 { background-color: #f0f4c3; }
+        .rank3 { background-color: #e6ee9c; }
+        .low-performer { background-color: #ffebee; }
+        .highlight {
+            background-color: #fffde7;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .metric {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #e3f2fd;
+            border-radius: 3px;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>平常時IVレンズ販売分析レポート</h1>
+        
+        <div class="key-finding">
+            <h2>エグゼクティブサマリー</h2>
+            <ul>
+                <li><strong>平常時の現状：</strong>IV販売率10%未満が6名（全体の43%）と、底上げが急務</li>
+                <li><strong>成功の鍵：</strong>辻氏（IV率56%）は全アクション90%以上、特にロイヤル見積100%を維持</li>
+                <li><strong>共通課題：</strong>低パフォーマー層はロイヤル見積実行率が50%未満</li>
+                <li><strong>LSCの実態：</strong>実行率は高いが、IV販売との相関なし。活用の「質」に課題</li>
+            </ul>
+        </div>
+
+        <h2>1. 平常時IV販売率ランキングと特徴分析</h2>
+        
+        <table>
+            <tr>
+                <th>順位</th>
+                <th>担当者</th>
+                <th>IV販売率</th>
+                <th>LSC実行率</th>
+                <th>ロイヤル見積</th>
+                <th>平均アクション実行率</th>
+                <th>特徴</th>
+            </tr>
+            <tr class="rank1">
+                <td>1</td>
+                <td>辻</td>
+                <td><strong>56%</strong></td>
+                <td>74%</td>
+                <td><span class="highlight">100%</span></td>
+                <td>95%</td>
+                <td>圧倒的トップ、独自の提案力</td>
+            </tr>
+            <tr class="rank2">
+                <td>2</td>
+                <td>中村</td>
+                <td><strong>24%</strong></td>
+                <td>87%</td>
+                <td>54%</td>
+                <td>79%</td>
+                <td>バランス型</td>
+            </tr>
+            <tr class="rank2">
+                <td>2</td>
+                <td>井上</td>
+                <td><strong>24%</strong></td>
+                <td>89%</td>
+                <td>84%</td>
+                <td>95%</td>
+                <td>高実行率型</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>土井</td>
+                <td>21%</td>
+                <td>46%</td>
+                <td>79%</td>
+                <td>85%</td>
+                <td>基礎力型</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>中峰</td>
+                <td>19%</td>
+                <td>89%</td>
+                <td>69%</td>
+                <td>93%</td>
+                <td>高実行率だが成果は中位</td>
+            </tr>
+            <tr class="low-performer">
+                <td>10</td>
+                <td>山澤</td>
+                <td>9%</td>
+                <td><span class="highlight">100%</span></td>
+                <td>41%</td>
+                <td>86%</td>
+                <td>LSC完璧だがロイヤル弱い</td>
+            </tr>
+            <tr class="low-performer">
+                <td>11</td>
+                <td>芦野</td>
+                <td>5%</td>
+                <td>92%</td>
+                <td>42%</td>
+                <td>81%</td>
+                <td>アクション高いが成果低い</td>
+            </tr>
+            <tr class="low-performer">
+                <td>14</td>
+                <td>冨士原</td>
+                <td>2%</td>
+                <td>24%</td>
+                <td>9%</td>
+                <td>58%</td>
+                <td>全体的に低実行率</td>
+            </tr>
+        </table>
+
+        <h2>2. 平常時の成功パターン分析</h2>
+        
+        <div class="success-pattern">
+            <h3>パターン1：完璧実行型（辻氏）</h3>
+            <ul>
+                <li>IV販売率：<span class="metric">56%</span>（2位の2.3倍）</li>
+                <li>全アクション項目90%以上を維持</li>
+                <li>特にロイヤル見積は<span class="highlight">100%</span>実行</li>
+                <li><strong>特徴：</strong>マニュアルを超えた独自の高額提案力を保有</li>
+            </ul>
+        </div>
+
+        <div class="success-pattern">
+            <h3>パターン2：バランス型（中村氏、井上氏）</h3>
+            <ul>
+                <li>IV販売率：<span class="metric">24%</span>（同率2位）</li>
+                <li>アクション実行率は70-95%でバランス良く実施</li>
+                <li>井上氏は全アクション90%以上だが、IV率は24%に留まる</li>
+                <li><strong>示唆：</strong>アクション実行だけでなく、提案の質が重要</li>
+            </ul>
+        </div>
+
+        <div class="success-pattern">
+            <h3>パターン3：基礎力型（土井氏）</h3>
+            <ul>
+                <li>IV販売率：<span class="metric">21%</span></li>
+                <li>LSC実行率は46%と低いが、他のアクションは高水準</li>
+                <li>平均アクション実行率85%</li>
+                <li><strong>特徴：</strong>基本動作の徹底で安定的な成果</li>
+            </ul>
+        </div>
+
+        <h2>3. 平常時の課題と改善ポイント</h2>
+        
+        <div class="challenge">
+            <h3>課題1：底上げが必要な層の存在</h3>
+            <ul>
+                <li>IV販売率10%未満：<span class="highlight">6名（43%）</span></li>
+                <li>共通特徴：ロイヤル見積実行率が50%未満</li>
+                <li>山澤氏の特異性：LSC100%でもロイヤル見積41%でIV率9%</li>
+            </ul>
+        </div>
+
+        <div class="challenge">
+            <h3>課題2：LSCの形骸化</h3>
+            <ul>
+                <li>LSC実行率とIV販売率に<span class="highlight">相関なし</span></li>
+                <li>高実行率でも低IV率の例：芦野氏（LSC92%、IV率5%）</li>
+                <li>問題点：チェックシートを埋めるだけで、提案に活かせていない</li>
+            </ul>
+        </div>
+
+        <div class="challenge">
+            <h3>課題3：個人差の大きさ</h3>
+            <ul>
+                <li>トップ（辻氏56%）と最下位（冨士原氏2%）で<span class="highlight">28倍の差</span></li>
+                <li>標準化・マニュアル化の限界が明確</li>
+                <li>属人的なスキルに依存する構造</li>
+            </ul>
+        </div>
+
+        <h2>4. 平常時の改善施策</h2>
+        
+        <div class="key-finding">
+            <h3>優先施策1：ロイヤル見積の質的向上（底上げ層向け）</h3>
+            <ul>
+                <li><strong>対象：</strong>ロイヤル見積実行率50%未満の6名</li>
+                <li><strong>目標：</strong>実行率を70%以上に引き上げ</li>
+                <li><strong>方法：</strong>
+                    <ul>
+                        <li>辻氏のロイヤル見積トークを録音・分析</li>
+                        <li>価格提示だけでなく「価値提案」のスクリプト作成</li>
+                        <li>ロールプレイング研修の実施</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="key-finding">
+            <h3>優先施策2：LSCの活用方法改革</h3>
+            <ul>
+                <li><strong>現状：</strong>チェックシートの記入に留まる</li>
+                <li><strong>改善：</strong>LSCから導き出す提案ロジックの標準化</li>
+                <li><strong>具体策：</strong>
+                    <ul>
+                        <li>高IV率スタッフ（辻氏、中村氏）のLSC活用法を可視化</li>
+                        <li>ライフスタイル別の提案パターン集作成</li>
+                        <li>「仕事用」「趣味用」「運転用」など複数所持提案の型化</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="key-finding">
+            <h3>優先施策3：成功者のノウハウ移転</h3>
+            <ul>
+                <li><strong>方法：</strong>辻氏とのペア接客制度</li>
+                <li><strong>対象：</strong>IV率10%未満の6名から順次実施</li>
+                <li><strong>期待効果：</strong>暗黙知の形式知化と即効性のある改善</li>
+            </ul>
+        </div>
+
+        <h2>5. 店舗別の平常時特性</h2>
+        
+        <table>
+            <tr>
+                <th>店舗</th>
+                <th>平均単価</th>
+                <th>来店人数/月</th>
+                <th>平常時の特徴</th>
+            </tr>
+            <tr>
+                <td>03（ノバティながの）</td>
+                <td>¥58,202</td>
+                <td>486人</td>
+                <td>中価格帯、来店数は中位</td>
+            </tr>
+            <tr>
+                <td>07（ダイエー北野田）</td>
+                <td>¥49,188</td>
+                <td>563人</td>
+                <td>低価格帯、来店数最多</td>
+            </tr>
+            <tr>
+                <td>M1（MOCA富田林）</td>
+                <td>¥60,452</td>
+                <td>333人</td>
+                <td>高価格帯、来店数最少</td>
+            </tr>
+            <tr>
+                <td>M3（MOCA金剛）</td>
+                <td>¥63,580</td>
+                <td>365人</td>
+                <td>最高価格帯、IV販売安定</td>
+            </tr>
+        </table>
+
+        <h2>6. アクションプラン</h2>
+        
+        <div class="key-finding">
+            <h3>短期（1ヶ月以内）</h3>
+            <ul>
+                <li>辻氏への詳細ヒアリング（高IV率の秘訣）</li>
+                <li>ロイヤル見積50%未満スタッフの個別指導開始</li>
+                <li>LSC活用成功事例の収集</li>
+            </ul>
+        </div>
+
+        <div class="key-finding">
+            <h3>中期（3ヶ月以内）</h3>
+            <ul>
+                <li>ペア接客制度の試験導入（辻氏×低IV率スタッフ）</li>
+                <li>ロイヤル見積の質的評価基準策定</li>
+                <li>ライフスタイル別提案パターン集の完成</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
