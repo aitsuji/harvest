@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>割引施策時IVレンズ販売分析レポート</title>
+    <style>
+        body {
+            font-family: 'Meiryo', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #d35400;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e67e22;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #7f4e2a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .key-finding {
+            background-color: #fef5e7;
+            padding: 20px;
+            border-left: 5px solid #e67e22;
+            margin: 20px 0;
+        }
+        .improvement {
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #27ae60;
+        }
+        .special-case {
+            background-color: #fdf2e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #e67e22;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+        th {
+            background-color: #e67e22;
+            color: white;
+        }
+        .top-improver { background-color: #d5f4e6; }
+        .negative { background-color: #ffebee; }
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .negative-value {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .metric {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #fff3e0;
+            border-radius: 3px;
+            margin: 2px;
+            font-weight: bold;
+        }
+        .arrow {
+            color: #e67e22;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>割引施策時（IVキャンペーン）販売分析レポート</h1>
+        
+        <div class="key-finding">
+            <h2>エグゼクティブサマリー</h2>
+            <ul>
+                <li><strong>キャンペーン効果：</strong>平常時IV率10%未満の層が大幅改善（山澤+23%、芦野+17%）</li>
+                <li><strong>成功要因：</strong>ロイヤル見積の改善とIV率向上に強い相関</li>
+                <li><strong>特異現象：</strong>辻氏はIV率56%→33%に低下。キャンペーンに依存しない販売力の証明</li>
+                <li><strong>割引の効果：</strong>価格障壁の低下により、提案力が弱い層でも成果を出せる</li>
+            </ul>
+        </div>
+
+        <h2>1. キャンペーン効果ランキング</h2>
+        
+        <table>
+            <tr>
+                <th>順位</th>
+                <th>担当者</th>
+                <th>平常時IV率</th>
+                <th>キャンペーン時IV率</th>
+                <th>改善幅</th>
+                <th>ロイヤル見積変化</th>
+                <th>特徴</th>
+            </tr>
+            <tr class="top-improver">
+                <td>1</td>
+                <td>山澤</td>
+                <td>9%</td>
+                <td>32%</td>
+                <td class="positive">+23%</td>
+                <td class="positive">+35%</td>
+                <td>ロイヤル見積大幅改善</td>
+            </tr>
+            <tr class="top-improver">
+                <td>2</td>
+                <td>芦野</td>
+                <td>5%</td>
+                <td>22%</td>
+                <td class="positive">+17%</td>
+                <td>+2%</td>
+                <td>他要因での改善</td>
+            </tr>
+            <tr class="top-improver">
+                <td>3</td>
+                <td>仲野</td>
+                <td>17%</td>
+                <td>27%</td>
+                <td class="positive">+10%</td>
+                <td class="negative-value">-3%</td>
+                <td>割引効果で改善</td>
+            </tr>
+            <tr class="top-improver">
+                <td>3</td>
+                <td>前垣</td>
+                <td>13%</td>
+                <td>23%</td>
+                <td class="positive">+10%</td>
+                <td class="positive">+19%</td>
+                <td>バランス良く改善</td>
+            </tr>
+            <tr class="top-improver">
+                <td>3</td>
+                <td>中村</td>
+                <td>24%</td>
+                <td>34%</td>
+                <td class="positive">+10%</td>
+                <td>+2%</td>
+                <td>高い基準から更に向上</td>
+            </tr>
+            <tr class="negative">
+                <td>14</td>
+                <td>辻</td>
+                <td>56%</td>
+                <td>33%</td>
+                <td class="negative-value">-23%</td>
+                <td class="negative-value">-6%</td>
+                <td>独自提案力の証明</td>
+            </tr>
+        </table>
+
+        <h2>2. キャンペーン時の成功パターン分析</h2>
+        
+        <div class="improvement">
+            <h3>パターン1：大幅改善型（元々低IV率層）</h3>
+            <ul>
+                <li><strong>代表例：</strong>山澤氏（IV率 <span class="metric">9%→32%</span>）</li>
+                <li>ロイヤル見積：41%→76%（<span class="positive">+35%</span>）</li>
+                <li>LLI説明：65%→88%（<span class="positive">+23%</span>）</li>
+                <li><strong>成功要因：</strong>割引により価格提示への心理的障壁が低下</li>
+                <li><strong>示唆：</strong>基礎的な接客力はあったが、高額提案が課題だった層</li>
+            </ul>
+        </div>
+
+        <div class="improvement">
+            <h3>パターン2：安定改善型（中位層）</h3>
+            <ul>
+                <li><strong>代表例：</strong>中村氏（IV率 <span class="metric">24%→34%</span>）、前垣氏（<span class="metric">13%→23%</span>）</li>
+                <li>元々一定の実力があり、キャンペーンで更に向上</li>
+                <li>ロイヤル見積の改善も適度に実施</li>
+                <li><strong>特徴：</strong>割引を活用した追加提案が奏功</li>
+            </ul>
+        </div>
+
+        <div class="improvement">
+            <h3>パターン3：割引依存型</h3>
+            <ul>
+                <li><strong>代表例：</strong>芦野氏（IV率 <span class="metric">5%→22%</span>）</li>
+                <li>ロイヤル見積は+2%と微増だが、IV率は<span class="positive">+17%</span></li>
+                <li>本日対応：56%→88%（<span class="positive">+32%</span>）と接客姿勢が改善</li>
+                <li><strong>解釈：</strong>割引により提案しやすくなり、積極性が向上</li>
+            </ul>
+        </div>
+
+        <h2>3. 特異ケース分析</h2>
+        
+        <div class="special-case">
+            <h3>辻氏：キャンペーンで逆にIV率低下</h3>
+            <ul>
+                <li>IV販売率：56% <span class="arrow">→</span> 33%（<span class="negative-value">-23%</span>）</li>
+                <li>全アクション項目は90%以上を維持</li>
+                <li><strong>仮説1：</strong>通常時から高いIV提案を実現しており、割引の恩恵を受けにくい</li>
+                <li><strong>仮説2：</strong>「価値」で売る力が強く、「価格」での訴求を必要としない</li>
+                <li><span class="highlight">結論：真の販売力は割引に依存しない</span></li>
+            </ul>
+        </div>
+
+        <h2>4. アクション項目別のキャンペーン効果</h2>
+        
+        <div class="key-finding">
+            <h3>最も効果的だったアクション：ロイヤル見積</h3>
+            <table>
+                <tr>
+                    <th>担当者</th>
+                    <th>ロイヤル見積改善</th>
+                    <th>IV率改善</th>
+                    <th>相関性</th>
+                </tr>
+                <tr>
+                    <td>山澤</td>
+                    <td class="positive">+35%</td>
+                    <td class="positive">+23%</td>
+                    <td>◎</td>
+                </tr>
+                <tr>
+                    <td>中峰</td>
+                    <td class="positive">+26%</td>
+                    <td class="positive">+9%</td>
+                    <td>◎</td>
+                </tr>
+                <tr>
+                    <td>石井</td>
+                    <td class="positive">+21%</td>
+                    <td>+2%</td>
+                    <td>△</td>
+                </tr>
+                <tr>
+                    <td>前垣</td>
+                    <td class="positive">+19%</td>
+                    <td class="positive">+10%</td>
+                    <td>◎</td>
+                </tr>
+            </table>
+            <p><strong>結論：</strong>ロイヤル見積の改善が大きいほど、IV率も向上する傾向</p>
+        </div>
+
+        <h2>5. 店舗別キャンペーン効果</h2>
+        
+        <table>
+            <tr>
+                <th>店舗</th>
+                <th>7月IV販売数</th>
+                <th>前月比</th>
+                <th>特徴</th>
+            </tr>
+            <tr>
+                <td>03（ノバティながの）</td>
+                <td>9件</td>
+                <td class="positive">+125%</td>
+                <td>キャンペーン効果最大</td>
+            </tr>
+            <tr>
+                <td>07（ダイエー北野田）</td>
+                <td>5件</td>
+                <td class="negative-value">-17%</td>
+                <td>低価格帯店舗では効果限定的</td>
+            </tr>
+            <tr>
+                <td>M1（MOCA富田林）</td>
+                <td>8件</td>
+                <td class="positive">+33%</td>
+                <td>高価格帯店舗で堅調</td>
+            </tr>
+            <tr>
+                <td>M3（MOCA金剛）</td>
+                <td>8件</td>
+                <td>±0%</td>
+                <td>元々高IV率で変化なし</td>
+            </tr>
+        </table>
+
+        <h2>6. 割引施策の効果最大化に向けた提言</h2>
+        
+        <div class="key-finding">
+            <h3>提言1：ターゲット層の明確化</h3>
+            <ul>
+                <li><strong>最も効果的：</strong>平常時IV率10%未満の層</li>
+                <li><strong>期待効果：</strong>IV率を20%以上に引き上げ可能</li>
+                <li><strong>重点施策：</strong>キャンペーン前のロイヤル見積研修実施</li>
+            </ul>
+        </div>
+
+        <div class="key-finding">
+            <h3>提言2：キャンペーン時の行動指針</h3>
+            <ul>
+                <li><strong>必須アクション：</strong>
+                    <ul>
+                        <li>全顧客へのロイヤル見積実施（目標：90%以上）</li>
+                        <li>価格差だけでなく「お得感」の演出</li>
+                        <li>「今だけ」の限定感を活用した決断促進</li>
+                    </ul>
+                </li>
+                <li><strong>推奨トーク：</strong>「通常¥○○のところ、今なら¥○○でご提供」</li>
+            </ul>
+        </div>
+
+        <div class="key-finding">
+            <h3>提言3：高パフォーマー層の活用</h3>
+            <ul>
+                <li>辻氏のような高IV率層は、キャンペーン時は「サポート役」に</li>
+                <li>低IV率スタッフの接客をフォロー</li>
+                <li>成功体験を積ませることで、平常時の改善にも繋げる</li>
+            </ul>
+        </div>
+
+        <h2>7. 次回キャンペーンに向けたアクションプラン</h2>
+        
+        <div class="improvement">
+            <h3>事前準備（キャンペーン1ヶ月前）</h3>
+            <ul>
+                <li>低IV率層（10%未満）への集中研修</li>
+                <li>ロイヤル見積ロールプレイング実施</li>
+                <li>キャンペーン用トークスクリプト配布</li>
+            </ul>
+        </div>
+
+        <div class="improvement">
+            <h3>キャンペーン中の施策</h3>
+            <ul>
+                <li>毎日のIV販売数を可視化（店舗別・個人別）</li>
+                <li>成功事例の即時共有</li>
+                <li>ペア接客の積極活用</li>
+            </ul>
+        </div>
+
+        <div class="improvement">
+            <h3>キャンペーン後のフォロー</h3>
+            <ul>
+                <li>改善した層への個別フィードバック</li>
+                <li>成功体験を平常時に活かす仕組み作り</li>
+                <li>次回目標の個別設定</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
